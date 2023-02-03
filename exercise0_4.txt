@@ -1,0 +1,41 @@
+//Create a similar diagram depicting the situation where the user creates a new note on the page https://studies.cs.helsinki.fi/exampleapp/notes by writing something into the text field and clicking the submit button.
+
+//If necessary, show operations on the browser or on the server as comments on the diagram.
+
+//The diagram does not have to be a sequence diagram. Any sensible way of presenting the events is fine.
+
+sequenceDiagram
+  participant browser
+  participant server
+  
+  Note: Th user clicks on the text box. The data is displayed on the text box.
+  Note: The user clicks on the submit button. The event then activates the below.
+  
+  browser->>server: POST https://fullstack-exampleapp.herokuapp.com/new_note
+  activate server
+  server->>browser: status code 302
+  deactivate server
+  
+  Note: Server creates new note object and adds it to notes array.
+  
+  browser->>server: GET http://fullstack-exampleapp.herokuapp.com/notes
+  activate server
+  server->>browser: HTML document
+  deactivate server
+  
+  browser->>server: GET http:fullstack-exampleapp.herokuapp.com/main.css
+  activate server
+  server->>browser: the css file
+  deactivate server
+  
+  browser->>server: GET http://fullstack-exampleapp.herokuapp.com/main.js
+  activate server
+  server->>browser: the JS file
+  deactivate server
+  
+  browser->>server: GET http://fullstack-exampleapp.herokuapp.com/data.json
+  activate server
+  server->>browser: json data (which now includes the new note)
+  deactivate server
+  
+  Note: The new note created is not saved to the server database
