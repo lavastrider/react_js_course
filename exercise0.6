@@ -1,0 +1,43 @@
+//Create a diagram depicting the situation where the user goes to the single-page app version of the notes app at https://studies.cs.helsinki.fi/exampleapp/spa.
+
+sequenceDiagram
+  participant browser
+  participant server
+  
+  browser->>server: GET http://studies.cs.helsinki.fi/exampleapp/spa
+  activate server
+  server->>browser: HTML document
+  deactivate server
+  
+  browser->>server: GET http://studies.cs.helsinki.fi/exampleapp/main.css
+  activate server
+  server->>browser: CSS file
+  deactivate server
+  
+  browser->>server: GET http://studies.cs.helsinki.fi/exampleapp/spa.js
+  activate server
+  server->>browser: JavaScript file
+  deactivate server
+  
+  browser->>server: GET http://studies.cs.helsinki.fi/exampleapp/data.json
+  activate server
+  server->>browser: JSON data
+  deactivate server
+  
+  Note: Page is loaded
+  
+  browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+  activate server
+  server->>browser: status 201 created
+  deactivate server
+  
+  Note: New note sent to server
+  
+  browser->>server: GET http://studies.cs.helsinki.fi/exampleapp/data.json
+  activate server
+  server->>browser: JSON data
+  deactivate server
+  
+  Note: JS script re-renders page with new note
+  
+  Note: POST request to server contains the new note as JSON data containing both note content and timestamp
