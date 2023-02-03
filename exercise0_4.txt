@@ -8,7 +8,7 @@ sequenceDiagram
   participant browser
   participant server
   
-  Note: Th user clicks on the text box. The data is displayed on the text box.
+  Note: The user clicks on the text box. The data is displayed on the text box.
   Note: The user clicks on the submit button. The event then activates the below.
   
   browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
@@ -17,6 +17,7 @@ sequenceDiagram
   deactivate server
   
   Note: Server creates new note object and adds it to notes array.
+  Note: The page then must reload.
   
   browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
   activate server
@@ -38,4 +39,4 @@ sequenceDiagram
   server->>browser: json data (which now includes the new note)
   deactivate server
   
-  Note: The new note created is not saved to the server database
+  Note: Page is loaded with submitted data
