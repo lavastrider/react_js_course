@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import {useState, useEffect} from 'react'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
