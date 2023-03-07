@@ -1,14 +1,32 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
 import ResultDisplaySingle from './ResultDisplaySingle'
 import ResultDisplayInline from './ResultDisplayInline' 
 
 const ResultDisplayMany = (props) => {
 
-	const onShowSingle = () => {
+//	console.log(props.apiKey, 'is api key in display many')
+
+	const onShowSingle = (commonName) => {
+	
+		console.log('he wanted to show the single country that was chosen by clicked button')
+		console.log(commonName, 'is common name')
+		
+		console.log(props.filters, 'is props filters')
+		//maybe setFilter(commonName), and then call RDS?
+		props.setFilters(commonName)
+		
 		return (
 			<div>
-				<ResultDisplaySingle countryInfo={props.countryDatas}/>
+				<ResultDisplaySingle 
+					countryInfo={props.countryDatas}
+					icon={props.icon}
+					setIcon={props.setIcon}
+					apiKey={props.apiKey}
+					temp={props.temp}
+					setTemp={props.setTemp}
+					wind={props.wind}
+					setWind={props.setWind}
+					alt={props.alt}
+					setAlt={props.setAlt}/>
 			</div>
 			)
 	}
@@ -59,14 +77,14 @@ const ResultDisplayMany = (props) => {
 			)
 		}
 
-	console.log(props.countryDatas, 'is props country data in result display')
-	console.log(props.countryDatas.length, 'is props countrydata length')
-
-	return (
-		<div>
-			<p>this is gen return</p>
-		</div>
-	)
+//	console.log(props.countryDatas, 'is props country data in result display')
+//	console.log(props.countryDatas.length, 'is props countrydata length')
+		
+	if (props.countryDatas.length === 0) {
+		return (
+			<h1>There are no matches</h1>
+			)
+		}
 }
 
 export default ResultDisplayMany;
